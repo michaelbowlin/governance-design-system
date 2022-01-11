@@ -5,6 +5,7 @@
 
 ---
 ### 11ty install
+Egghead.io provides a good starter tutorial: (LINK)[https://egghead.io/lessons/11ty-define-an-eleventy-11ty-collection-to-create-a-blog] similar to what we will be doing below :smile:
 
 1) NPM Init
 
@@ -154,6 +155,46 @@ Currently your project should look like this:
 
 ---
 ### 11ty Collections
+> A way for 11ty to tie together related content
+
+1) Under the `src` folder, create a new directory call `pages`. In the `pages` directory create a markdown file called `overview.md` and add the following:
+
+```markdown
+---
+title: "Overview Page"
+---
+
+This is the Overview page...
+
+```
+
+2) Next, define what layout the page(s) should adhere to using a `json` file. In the `src/blog` directory, create a file called `pages.json` and add the following:
+
+```markdown
+{
+  "layout": "base.njk",
+  "tags": "posts"
+}
+```
+3) Within the `src` folder, create a file called `blog.md` and add the following:
+
+```markdown
+---
+title: "Sitemap"
+layout: "base.njk"
+---
+
+## Sitemap Pages
+
+<ul>
+{% for post in collections.posts %}
+<li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+</ul>
+
+```
+
+4) Next, visit the Blog page——and you will see a list of your `pages`.
+
 
 
 
