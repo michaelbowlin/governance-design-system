@@ -3,6 +3,7 @@
 ## Pattern Library Install
 > This is a basic 11ty install for housing the Pattern Library portion of the design system.
 
+---
 ### 11ty install
 
 1) NPM Init
@@ -15,7 +16,7 @@
 
 3) Open `package.json` and replace the `scripts` code with the following 11ty commands:
 
-```html
+```markdown
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy"
@@ -24,7 +25,7 @@
 
 4) In the root of your project, create and 11ty config file named `.eleventy.js`. Add the following code:
 
-```html
+```js
 module.exports = function (eleventyConfig) {
     return {
         dir: {
@@ -39,7 +40,7 @@ module.exports = function (eleventyConfig) {
 
 6) Within the new `index.md` file create the following front-matter and content:
 
-```html
+```markdown
 ---
 title: "Hello World"
 ---
@@ -62,7 +63,7 @@ This is my home page
     <title>{{ title }}</title>
 </head>
 <body>
-    <h1>Title</h1>
+    <h1>{{ title }}</h1>
 
     {{ content | safe }}
 </body>
@@ -74,4 +75,91 @@ This is my home page
 `layout: "base.njk"`
 
 10) Run `npm start` in the terminal and :boom: you should have liftoff :rocket:
+
+Currently your project should look like this:
+
+```markdown
+.
+├── node_modules
+├── public
+├── src
+│   └── _includes
+│   │   └── base.njk
+│   └── index.md
+├── .eleventy.js
+└── package.json
+
+```
+
+---
+### 11ty Sass Compiling
+
+1) Install Sass and NPM run all:
+
+`npm install sass npm-run-all`
+
+2) Add `watch` and `build` commands to the `package.json` file:
+
+```js
+  "scripts": {
+    "watch:sass": "sass --watch src/sass:public/css",
+    "build:sass": "sass src/sass:public/css",
+    "watch:elevety": "eleventy --serve",
+    "build:elevety": "eleventy",
+    "start": "npm-run-all build:sass --parallel watch:*",
+    "build": "npm-run-all build:*"
+  },
+```
+
+3) Create a `sass` directory in `src` parent directory and add a Sass file called `style.scss` and add the following:
+
+```css
+* {
+  color: hotpink;
+}
+```
+
+4) Create a Nunjucks template variable in `base.njk`:
+
+`<link rel="stylesheet" href="{{ 'css/style.css' | url }}">`
+
+5) CSS is not a recognized file type in Eleventy. To fix this, open `.eleventy.js` and add the following:
+
+* Add a `watch` target:
+
+`eleventyConfig.addWatchTarget("./src/sass/");`
+
+* and add a pass-through config (this'll take the contents fo CSS and pass it through to the public directory)
+
+`eleventyConfig.addPassthroughCopy("./src/css");`
+
+6) run `npm start` in the terminal.
+
+Currently your project should look like this:
+
+```markdown
+.
+├── node_modules
+├── public
+├── src
+│   └── _includes
+│   │   └── base.njk
+│   └── sass
+│   │   └── style.scss
+│   └── index.md
+├── .eleventy.js
+└── package.json
+
+```
+
+---
+### 11ty Collections
+
+
+
+---
+### 11ty Filtering
+
+
+
 
