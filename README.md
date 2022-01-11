@@ -199,6 +199,11 @@ layout: "base.njk"
 
 
 ---
+### 11ty Navigation Plugin
+
+`npm install -D @11ty/eleventy-navigation`
+
+---
 ### 11ty Filtering
 
 
