@@ -1,0 +1,23 @@
+{
+  "name": "governance-design-system",
+  "version": "1.0.0",
+  "description": "A UX governance design system.",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelbowlin/governance-design-system.git"
+  },
+  "author": "Mike Bowlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelbowlin/governance-design-system/issues"
+  },
+  "homepage": "https://github.com/michaelbowlin/governance-design-system#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.0"
+  }
+}
